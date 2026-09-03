@@ -1,49 +1,76 @@
-# Changelog
+# Counter — Shop Billing App
 
-All notable changes to this project are logged here, day by day.
+A simple, all-in-one billing app for shop counters. Add items to a cart, generate a bill instantly, print it, and keep track of inventory, customers, dues, and expenses — all from a single HTML file with no installation and no backend server required.
 
-## Day 1 — 2026-08-29
-### Added
-- `index.html` — the complete billing app in a single file:
-  - **Billing** — search, add items to cart, live total, generate & print bill
-  - **Inventory** — items with price, GST %, HSN code, and stock (auto-deducted on sale)
-  - **GST invoices** — CGST + SGST split, toggleable in Settings
-  - **Customers (Khata/Udhaar)** — customer records with running balance; full, partial, and credit payments
-  - **UPI QR payments** — live QR code generated per bill or due amount for real UPI payment collection
-  - **Expenses** — log shop expenses by category
-  - **Dashboard** — today's revenue, expenses, net, items sold, top sellers, low-stock alerts (live-updating)
-  - **History** — every bill saved and reprintable
-- `README.md` — setup guide, project structure, and day-wise contribution log
+## Features
 
-## Day 2 — 2026-08-30
-### Added
-- `CHANGELOG.md` — this file, tracking day-wise history
+- **Billing** — search and tap items to add them to a cart, see the live total, and generate a printable bill in one click.
+- **Inventory** — add items with price, GST %, HSN code, and stock quantity. Stock reduces automatically as bills are generated.
+- **GST invoices** — bills show a proper CGST + SGST split (toggle on/off in Settings).
+- **Customers (Khata / Udhaar)** — save customer records and track running balances. Supports full, partial, and credit (pay-later) payments.
+- **UPI QR payments** — generate a live UPI QR code for any bill or due amount; customers scan and pay directly to your UPI ID.
+- **Expenses** — log shop expenses (rent, purchases, salaries, etc.) by category.
+- **Dashboard** — today's revenue, expenses, net total, items sold, top sellers, and low-stock alerts, updating live.
+- **History** — every past bill is saved and can be reopened or reprinted anytime.
 
-## Day 3 — 2026-08-31
-### Added
-- `style.css` — all CSS extracted from `index.html` into its own file for cleaner code organization
-### Changed
-- `index.html` — inline `<style>` block replaced with `<link rel="stylesheet" href="style.css">`
+## Project Structure
 
-## Day 4 — 2026-09-01
-### Added
-- `app.js` — all JavaScript logic extracted from `index.html` into its own file
-### Changed
-- `index.html` — inline `<script>` block replaced with `<script src="app.js"></script>`; the file is now pure markup (18 lines)
+This repo is built incrementally, one file at a time. Current structure:
 
-## Day 5 — 2026-09-02
-### Added
-- `backup.js` — export/import feature:
-  - "Download backup" button (in Settings) saves all data — inventory, bills, customers, payments, expenses, shop settings — as a timestamped `.json` file
-  - "Restore backup" button lets you pick a previously downloaded `.json` file and reload it, after a confirmation prompt (since it replaces all current data)
-### Changed
-- `index.html` — added `<script src="backup.js"></script>`
-- `app.js` — Settings modal now has a "Backup & restore" section wired to the new functions
+```
+shop-billing/
+│
+├── index.html       # App markup only — links style.css, app.js, backup.js
+├── style.css         # All styling
+├── app.js             # Core app logic (billing, inventory, customers, expenses, dashboard)
+├── backup.js           # Export/import all data as a .json backup file
+├── README.md         # This file
+└── CHANGELOG.md       # Day-wise history of what was added and when
+```
 
-## Day 6 — TBD
-### Planned
-- `manifest.json` + `sw.js` — makes the app installable as a home-screen icon (PWA)
+As new files are added (PWA files, etc.), they'll be listed here and in the Day-wise Log below.
+
+## Day-wise Log
+
+| Day | Date | File Added | What it does |
+|-----|------|------------|---------------|
+| Day 1 | 2026-08-29 | `index.html` | Complete billing app: cart & billing, inventory, GST invoices, customer khata, UPI QR payments, expenses, dashboard, and history — all in one file. |
+| Day 1 | 2026-08-29 | `README.md` | Setup guide, project structure, and this day-wise log. |
+| Day 2 | 2026-08-30 | `CHANGELOG.md` | Detailed day-by-day changelog of everything added to the project. |
+| Day 3 | 2026-08-31 | `style.css` | All CSS extracted out of `index.html` into its own file; `index.html` updated to link it. |
+| Day 4 | 2026-09-01 | `app.js` | All JavaScript logic extracted out of `index.html` into its own file; `index.html` updated again — now pure markup. |
+| Day 5 | 2026-09-02 | `backup.js` | New feature: "Download backup" and "Restore backup" buttons in Settings, to export/import all shop data as a `.json` file. |
+
+_This table will be updated each day as new files are added to the project._
+
+## Getting Started
+
+No build step, no dependencies to install.
+
+1. Open `index.html` directly in any modern browser (Chrome, Edge, Safari).
+2. Or enable **GitHub Pages** for this repo (Settings → Pages → deploy from branch) to access it from a URL on any device.
+
+## First-time Setup
+
+1. Click the settings (gear) icon and fill in your **shop name, address, phone, GSTIN, and UPI ID**.
+2. Go to **Inventory** and add your items (name, price, GST %, stock, HSN code).
+3. You're ready to start billing from the **Billing** tab.
+
+## Data Storage
+
+All data (inventory, bills, customers, expenses) is saved automatically in the browser's storage — nothing is lost between sessions. No external database or server is used.
+
+## Tech
+
+Single-file app built with plain HTML, CSS, and JavaScript. QR codes are generated client-side using [qrcodejs](https://github.com/davidshimjs/qrcodejs).
+
+## Roadmap
+
+- [ ] Data backup / export (JSON)
+- [ ] Shop logo on receipts
+- [ ] Installable as a home-screen app (PWA)
+- [ ] Changelog of updates
 
 ---
 
-_Each entry above is added the same day a file is added to the project — see `README.md` for the matching Day-wise Log table._
+Built and maintained incrementally, one feature at a time.
